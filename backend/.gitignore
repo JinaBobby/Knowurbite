@@ -1,0 +1,8 @@
+# Virtual Environment
+backend_venv/
+
+# Python cache
+_pycache_/
+
+# Environment variables (NEVER commit this file)
+.env
