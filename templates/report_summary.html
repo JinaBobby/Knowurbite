@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KnowUrBite - Report Summary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Report Submission Complete!</h1>
+        <p>Thank you for your submission. Your report has been logged and sent to the Food Safety Officers for review. </p>
+        <hr>
+        <h2>Your Report Details</h2>
+        <div class="report-details">
+            {% if result %}
+            <p><strong>Initial AI Prediction:</strong> <span class="prediction-result">{{ result }}</span></p>
+            {% else %}
+            <p><strong>Initial AI Prediction:</strong> <span class="prediction-result">No image submitted for prediction.</span></p>
+            {% endif %}
+            
+            <p><strong>Your Review:</strong> {{ review if review else "No review provided." }}</p>
+            
+            {% if food_image %}
+            <p><strong>Submitted Food Image:</strong></p>
+            <img src="{{ url_for('static', filename='uploads/' + food_image) }}" alt="Submitted Food Image" style="max-width: 300px; height: auto;">
+            {% else %}
+            <p>No food image was submitted.</p>
+            {% endif %}
+
+            {% if proof_image %}
+            <p><strong>Proof Image:</strong></p>
+            <img src="{{ url_for('static', filename='uploads/' + proof_image) }}" alt="Proof Image" style="max-width: 300px; height: auto;">
+            {% else %}
+            <p>No proof image was provided.</p>
+            {% endif %}
+        </div>
+        <hr>
+        <h2>Ingredient Analysis</h2>
+        <p><strong>Analysis from Your Submitted Details:</strong></p>
+        <p>{{ ingredients_result if ingredients_result else "No ingredients provided for analysis." }}</p>
+        <hr>
+        <h2>Current Local Adulteration Data</h2>
+        <p>This is placeholder data based on your location: Kochi, Kerala 📍</p>
+        <ul>
+            <li>**Jaggery Adulteration:** The highest number of cases recorded in the past year.</li>
+            <li>**Spice Fraud:** Common adulterants include sawdust and synthetic dyes.</li>
+            <li>**Milk Adulteration:** Detergent and water are the most frequently detected adulterants.</li>
+        </ul>
+        <a href="/">Return to Home</a>
+    </div>
+</body>
+</html>

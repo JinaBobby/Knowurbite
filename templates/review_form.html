@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KnowUrBite - Review</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Write Your Review</h1>
+        <form action="/submit_report" method="post" enctype="multipart/form-data">
+            <label for="review">Your Review:</label>
+            <textarea name="review" id="review" rows="5" placeholder="Describe the issue with the food product..."></textarea>
+            <label for="proof_image">Proof Image (Optional):</label>
+            <input type="file" name="proof_image" id="proof_image">
+            <input type="submit" value="Submit Report">
+        </form>
+        <hr>
+        <a href="/ingredients_page">Back</a>
+    </div>
+</body>
+</html>

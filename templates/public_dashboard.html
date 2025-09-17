@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KnowUrBite - Public Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Public User Dashboard</h1>
+        <h2>Upload Food Image</h2>
+        <form action="/check_adulteration" method="post" enctype="multipart/form-data">
+            <label for="food_image">Food Image:</label>
+            <input type="file" name="food_image" id="food_image" required>
+            <input type="submit" value="Check for Adulteration">
+        </form>
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            <a href="/">Back to Login</a>
+            <a href="/ingredients_page">Next Page (Skip Image)</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KnowUrBite - Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <p class="prediction-result">{{ result }}</p>
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            <a href="/public_dashboard">Back to Upload</a>
+            <a href="/ingredients_page">Next Page</a>
+        </div>
+    </div>
+</body>
+</html>

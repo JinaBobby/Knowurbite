@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KnowUrBite - Public Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Your Dashboard</h1>
+        <h2>Submit a Food Adulteration Report</h2>
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            
+            <label for="file">Food Image:</label>
+            <input type="file" name="file" id="file" required>
+            
+            <input type="submit" value="Upload and Check">
+        </form>
+
+        <hr>
+        <h2>Past Submissions</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Image Path</th>
+                    <th>Risk Score</th>
+                    <th>Status</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for submission in submissions %}
+                <tr>
+                    <td>{{ submission[0] }}</td>
+                    <td>{{ submission[1] }}</td>
+                    <td>{{ submission[2] }}</td>
+                    <td>{{ submission[3] }}</td>
+                    <td>{{ submission[4] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

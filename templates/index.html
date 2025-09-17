@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KnowUrBite - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to KnowUrBite</h1>
+        <h2>Please Log In</h2>
+        <form action="/login" method="post">
+            <label for="role">Select your role:</label>
+            <select name="role" id="role">
+                <option value="public_user">Public User</option>
+                <option value="lab">Lab Team</option>
+                <option value="officer">Officer</option>
+            </select>
+            <input type="submit" value="Log In">
+        </form>
+    </div>
+</body>
+</html>

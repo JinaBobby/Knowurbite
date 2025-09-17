@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KnowUrBite - Ingredients</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Ingredients Analysis</h1>
+        <h2>Upload or type the ingredients list</h2>
+        <form action="/analyze_ingredients" method="post" enctype="multipart/form-data">
+            <label for="ingredients_photo">Ingredients Photo (OCR):</label>
+            <input type="file" name="ingredients_photo" id="ingredients_photo">
+
+            <label for="ingredients_text">Or Manually Type Below:</label>
+            <textarea name="ingredients_text" id="ingredients_text" rows="5"></textarea>
+
+            <input type="submit" value="Analyze Ingredients">
+        </form>
+        <hr>
+        <form action="/review_form" method="get">
+            <input type="submit" value="Next Page (Skip Ingredients)">
+        </form>
+        <a href="/public_dashboard">Cancel</a>
+    </div>
+</body>
+</html>
