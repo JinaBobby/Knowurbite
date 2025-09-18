@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KnowUrBite - Check Method</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Select Check Method</h1>
+        
+        <div class="method-cards">
+            <div class="method-card">
+                <h3>Image Analysis</h3>
+                <p>Upload images of food products for visual adulteration detection</p>
+                <a href="{{ url_for('upload_image') }}" class="btn-primary">Select</a>
+            </div>
+            
+            <div class="method-card">
+                <h3>Audio Analysis</h3>
+                <p>Upload audio samples (shaking, pouring) for sound-based detection</p>
+                <a href="{{ url_for('upload_audio') }}" class="btn-primary">Select</a>
+            </div>
+            
+            <div class="method-card">
+                <h3>Ingredients Analysis</h3>
+                <p>Upload or type ingredients list for NLP-based analysis</p>
+                <a href="{{ url_for('upload_ingredients') }}" class="btn-primary">Select</a>
+            </div>
+        </div>
+        
+        <a href="{{ url_for('public_dashboard') }}" class="back-link">Back to Dashboard</a>
+    </div>
+</body>
+</html>

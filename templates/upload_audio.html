@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KnowUrBite - Upload Audio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Audio Sample</h1>
+        
+        <form action="{{ url_for('check_adulteration') }}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="check_type" value="audio">
+            
+            <div class="form-group">
+                <label for="audio_sample">Select Audio File:</label>
+                <input type="file" name="audio_sample" id="audio_sample" accept="audio/*" required>
+                <small>Record shaking seeds, pouring milk, or tapping packages</small>
+            </div>
+            
+            <input type="submit" value="Analyze Audio" class="btn-primary">
+        </form>
+        
+        <div class="navigation-links">
+            <a href="{{ url_for('check_method') }}" class="back-link">Back to Methods</a>
+            <a href="{{ url_for('review_form') }}" class="next-link">Skip to Review</a>
+        </div>
+    </div>
+</body>
+</html>

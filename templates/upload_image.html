@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KnowUrBite - Upload Image</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Food Image</h1>
+        
+        <form action="{{ url_for('check_adulteration') }}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="check_type" value="image">
+            
+            <div class="form-group">
+                <label for="food_image">Select Food Image:</label>
+                <input type="file" name="food_image" id="food_image" accept="image/*" required>
+            </div>
+            
+            <input type="submit" value="Check for Adulteration" class="btn-primary">
+        </form>
+        
+        <div class="navigation-links">
+            <a href="{{ url_for('check_method') }}" class="back-link">Back to Methods</a>
+            <a href="{{ url_for('review_form') }}" class="next-link">Skip to Review</a>
+        </div>
+    </div>
+</body>
+</html>

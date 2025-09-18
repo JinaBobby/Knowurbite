@@ -8,15 +8,32 @@
 <body>
     <div class="container">
         <h1>Write Your Review</h1>
-        <form action="/submit_report" method="post" enctype="multipart/form-data">
-            <label for="review">Your Review:</label>
-            <textarea name="review" id="review" rows="5" placeholder="Describe the issue with the food product..."></textarea>
-            <label for="proof_image">Proof Image (Optional):</label>
-            <input type="file" name="proof_image" id="proof_image">
-            <input type="submit" value="Submit Report">
+        
+        <div class="prediction-summary">
+            <h3>Previous Analysis Result:</h3>
+            <p class="prediction-result">{{ session.get('prediction_result', 'No analysis performed yet') }}</p>
+        </div>
+        
+        <form action="{{ url_for('submit_review') }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="review">Your Review:</label>
+                <textarea name="review" id="review" rows="5" placeholder="Describe your experience with this product..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="proof_image">Proof Image (Optional):</label>
+                <input type="file" name="proof_image" id="proof_image" accept="image/*">
+            </div>
+            
+            <div class="form-group">
+                <label for="vendor_info">Vendor Information (Optional):</label>
+                <input type="text" name="vendor_info" id="vendor_info" placeholder="Store name, location, or GSTIN">
+            </div>
+            
+            <input type="submit" value="Submit Report" class="btn-primary">
         </form>
-        <hr>
-        <a href="/ingredients_page">Back</a>
+        
+        <a href="{{ url_for('check_method') }}" class="back-link">Back to Check Methods</a>
     </div>
 </body>
 </html>

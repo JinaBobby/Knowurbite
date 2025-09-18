@@ -7,17 +7,22 @@
 </head>
 <body>
     <div class="container">
-        <h1>Public User Dashboard</h1>
-        <h2>Upload Food Image</h2>
-        <form action="/check_adulteration" method="post" enctype="multipart/form-data">
-            <label for="food_image">Food Image:</label>
-            <input type="file" name="food_image" id="food_image" required>
-            <input type="submit" value="Check for Adulteration">
-        </form>
-        <hr>
-        <div style="display: flex; justify-content: space-between;">
-            <a href="/">Back to Login</a>
-            <a href="/ingredients_page">Next Page (Skip Image)</a>
+        <h1>Welcome to KnowUrBite</h1>
+        <h2>Public User Dashboard</h2>
+        
+        <div class="safety-tips">
+            <h3>Food Safety Tips</h3>
+            <ul>
+                <li>Check for unusual colors or textures in food products</li>
+                <li>Buy from reputable vendors with proper certifications</li>
+                <li>Look for FSSAI license number on food packages</li>
+                <li>Be cautious of products sold at unusually low prices</li>
+            </ul>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="{{ url_for('check_method') }}" class="btn-primary">Check for Adulteration</a>
+            <a href="#" class="btn-secondary">View Previous Reports</a>
         </div>
     </div>
 </body>

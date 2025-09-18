@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KnowUrBite - Ingredients Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Ingredients Analysis</h1>
+        
+        <form action="{{ url_for('check_adulteration') }}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="check_type" value="ingredients">
+            
+            <div class="form-group">
+                <label for="ingredients_photo">Upload Ingredients Label (optional):</label>
+                <input type="file" name="ingredients_photo" id="ingredients_photo" accept="image/*">
+            </div>
+            
+            <div class="form-group">
+                <label for="ingredients_text">Or Type Ingredients List:</label>
+                <textarea name="ingredients_text" id="ingredients_text" rows="5" placeholder="Enter ingredients separated by commas..."></textarea>
+            </div>
+            
+            <input type="submit" value="Analyze Ingredients" class="btn-primary">
+        </form>
+        
+        <div class="navigation-links">
+            <a href="{{ url_for('check_method') }}" class="back-link">Back to Methods</a>
+            <a href="{{ url_for('review_form') }}" class="next-link">Skip to Review</a>
+        </div>
+    </div>
+</body>
+</html>
