@@ -1,0 +1,94 @@
+import librosa
+import librosa.display
+import matplotlib.pyplot as plt
+import numpy as np
+
+audio_path = r"C:\Users\Jina\Desktop\knowurbite\adulterated_milk\bbc_water-atmo_nhu0500609 (1).mp3"
+y, sr = librosa.load(audio_path)
+
+# Pre-emphasis
+pre_emphasis = 0.97
+y_pre = np.append(y[0], y[1:] - pre_emphasis * y[:-1])
+
+plt.figure(figsize=(10, 3))
+librosa.display.waveshow(y_pre, sr=sr)
+plt.title("Pre-emphasized Audio Waveform")
+plt.xlabel("Time")
+plt.ylabel("Amplitude")
+plt.show()
+frame_length = 2048
+hop_length = 512
+
+
+
+
+
+frames = librosa.util.frame(y_pre, frame_length=frame_length, hop_length=hop_length)
+
+plt.figure(figsize=(10, 3))
+plt.plot(frames[:, 10])  # Plot one frame
+plt.title("One Framed & Windowed Signal")
+plt.xlabel("Samples")
+plt.ylabel("Amplitude")
+plt.show()
+fft = np.abs(np.fft.rfft(frames[:, 10]))
+
+
+
+
+plt.figure(figsize=(10, 3))
+plt.plot(fft)
+plt.title("FFT Magnitude Spectrum")
+plt.xlabel("Frequency Bin")
+plt.ylabel("Magnitude")
+plt.show()
+
+
+
+mel_spec = librosa.feature.melspectrogram(
+    y=y_pre,
+    sr=sr,
+    n_mels=128,
+    hop_length=512
+)
+
+plt.figure(figsize=(10, 4))
+librosa.display.specshow(
+    mel_spec,
+    sr=sr,
+    x_axis="time",
+    y_axis="mel"
+)
+plt.colorbar(format="%+2.0f")
+plt.title("Mel Filter Bank Output")
+plt.show()
+
+
+
+mfcc = librosa.feature.mfcc(
+    y=y_pre,
+    sr=sr,
+    n_mfcc=40
+)
+
+plt.figure(figsize=(10, 4))
+librosa.display.specshow(
+    mfcc,
+    sr=sr,
+    x_axis="time"
+)
+plt.colorbar()
+plt.title("MFCC Feature Heatmap")
+plt.ylabel("MFCC Coefficients")
+plt.show()
+
+
+
+mfcc_mean = np.mean(mfcc.T, axis=0)
+
+plt.figure(figsize=(8, 3))
+plt.plot(mfcc_mean, marker='o')
+plt.title("Final MFCC Feature Vector (Mean)")
+plt.xlabel("MFCC Index")
+plt.ylabel("Value")
+plt.show()

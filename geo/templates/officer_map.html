@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KnowUrBite Risk Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { height: 100vh; }
+        .popup-card { font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+var map = L.map('map').setView([10.8505, 76.2711], 7); // Kerala center
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+}).addTo(map);
+
+// 🎨 Risk color logic
+function getColor(risk) {
+    return risk > 70 ? "red" :
+           risk > 40 ? "orange" :
+           "green";
+}
+
+// Fetch vendor data
+fetch('/api/vendors')
+.then(res => res.json())
+.then(vendors => {
+    vendors.forEach(vendor => {
+
+        L.circleMarker([vendor.lat, vendor.lon], {
+            radius: 8,
+            color: getColor(vendor.risk_score),
+            fillOpacity: 0.7
+        }).addTo(map)
+        .bindPopup(`
+            <div class="popup-card">
+                <b>${vendor.name}</b><br>
+                GSTIN: ${vendor.gstin}<br>
+                Risk Score: <b>${vendor.risk_score}%</b><br>
+                Complaints: ${vendor.complaints}<br>
+                Lab Confirmed: ${vendor.lab_confirmed ? "Yes" : "No"}
+            </div>
+        `);
+
+    });
+});
+</script>
+
+</body>
+</html>
